@@ -81,6 +81,7 @@ object DateUtils {
         return res
     }
 
+    @SuppressLint("SimpleDateFormat")
     fun stampToDate6(s: String): String {
         val res: String
         val simpleDateFormat = SimpleDateFormat("HH:mm")
