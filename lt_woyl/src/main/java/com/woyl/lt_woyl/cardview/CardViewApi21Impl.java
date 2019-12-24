@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 The Android Open Source Project
+ * Copyright 2018 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,158 +23,99 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 @RequiresApi(21)
-class CardViewApi21Impl extends CardViewApi17Impl {
-
-    private boolean useLower = false;
+class CardViewApi21Impl implements CardViewImpl {
 
     @Override
     public void initialize(CardViewDelegate cardView, Context context,
-                           ColorStateList backgroundColor, float radius, float elevation, float maxElevation,
-                           ColorStateList shadowColorStart, ColorStateList shadowColorEnd) {
+                           ColorStateList backgroundColor, float radius, float elevation, float maxElevation) {
+        final RoundRectDrawable background = new RoundRectDrawable(backgroundColor, radius);
+        cardView.setCardBackground(background);
 
-        if (shadowColorStart == null && shadowColorEnd == null) {
-            useLower = false;
-
-            final RoundRectDrawable background = new RoundRectDrawable(backgroundColor, radius);
-            cardView.setCardBackground(background);
-
-            View view = cardView.getCardView();
-            view.setClipToOutline(true);
-            view.setElevation(elevation);
-            setMaxElevation(cardView, maxElevation);
-        } else {
-            useLower = true;
-            super.initialize(cardView, context, backgroundColor, radius, elevation, maxElevation, shadowColorStart, shadowColorEnd);
-        }
+        View view = cardView.getCardView();
+        view.setClipToOutline(true);
+        view.setElevation(elevation);
+        setMaxElevation(cardView, maxElevation);
     }
 
     @Override
     public void setRadius(CardViewDelegate cardView, float radius) {
-        if (useLower) {
-            super.setRadius(cardView, radius);
-        } else {
-            getCardBackground(cardView).setRadius(radius);
-        }
+        getCardBackground(cardView).setRadius(radius);
+    }
+
+    @Override
+    public void initStatic() {
     }
 
     @Override
     public void setMaxElevation(CardViewDelegate cardView, float maxElevation) {
-        if (useLower) {
-            super.setMaxElevation(cardView, maxElevation);
-        } else {
-            getCardBackground(cardView).setPadding(maxElevation,
-                    cardView.getUseCompatPadding(), cardView.getPreventCornerOverlap());
-            updatePadding(cardView);
-        }
+        getCardBackground(cardView).setPadding(maxElevation,
+                cardView.getUseCompatPadding(), cardView.getPreventCornerOverlap());
+        updatePadding(cardView);
     }
 
     @Override
     public float getMaxElevation(CardViewDelegate cardView) {
-        if (useLower) {
-            return super.getMaxElevation(cardView);
-        } else {
-            return getCardBackground(cardView).getPadding();
-        }
+        return getCardBackground(cardView).getPadding();
     }
 
     @Override
     public float getMinWidth(CardViewDelegate cardView) {
-        if (useLower) {
-            return super.getMinWidth(cardView);
-        } else {
-            return getRadius(cardView) * 2;
-        }
+        return getRadius(cardView) * 2;
     }
 
     @Override
     public float getMinHeight(CardViewDelegate cardView) {
-        if (useLower) {
-            return super.getMinHeight(cardView);
-        } else {
-            return getRadius(cardView) * 2;
-        }
+        return getRadius(cardView) * 2;
     }
 
     @Override
     public float getRadius(CardViewDelegate cardView) {
-        if (useLower) {
-            return super.getRadius(cardView);
-        } else {
-            return getCardBackground(cardView).getRadius();
-        }
+        return getCardBackground(cardView).getRadius();
     }
 
     @Override
     public void setElevation(CardViewDelegate cardView, float elevation) {
-        if (useLower) {
-            super.setElevation(cardView, elevation);
-        } else {
-            cardView.getCardView().setElevation(elevation);
-        }
+        cardView.getCardView().setElevation(elevation);
     }
 
     @Override
     public float getElevation(CardViewDelegate cardView) {
-        if (useLower) {
-            return super.getElevation(cardView);
-        } else {
-            return cardView.getCardView().getElevation();
-        }
+        return cardView.getCardView().getElevation();
     }
 
     @Override
     public void updatePadding(CardViewDelegate cardView) {
-        if (useLower) {
-            super.updatePadding(cardView);
-        } else {
-            if (!cardView.getUseCompatPadding()) {
-                cardView.setShadowPadding(0, 0, 0, 0);
-                return;
-            }
-            float elevation = getMaxElevation(cardView);
-            final float radius = getRadius(cardView);
-            int hPadding = (int) Math.ceil(RoundRectDrawableWithShadow
-                    .calculateHorizontalPadding(elevation, radius, cardView.getPreventCornerOverlap()));
-            int vPadding = (int) Math.ceil(RoundRectDrawableWithShadow
-                    .calculateVerticalPadding(elevation, radius, cardView.getPreventCornerOverlap()));
-            cardView.setShadowPadding(hPadding, vPadding, hPadding, vPadding);
+        if (!cardView.getUseCompatPadding()) {
+            cardView.setShadowPadding(0, 0, 0, 0);
+            return;
         }
+        float elevation = getMaxElevation(cardView);
+        final float radius = getRadius(cardView);
+        int hPadding = (int) Math.ceil(RoundRectDrawableWithShadow
+                .calculateHorizontalPadding(elevation, radius, cardView.getPreventCornerOverlap()));
+        int vPadding = (int) Math.ceil(RoundRectDrawableWithShadow
+                .calculateVerticalPadding(elevation, radius, cardView.getPreventCornerOverlap()));
+        cardView.setShadowPadding(hPadding, vPadding, hPadding, vPadding);
     }
 
     @Override
     public void onCompatPaddingChanged(CardViewDelegate cardView) {
-        if (useLower) {
-            super.onCompatPaddingChanged(cardView);
-        } else {
-            setMaxElevation(cardView, getMaxElevation(cardView));
-        }
+        setMaxElevation(cardView, getMaxElevation(cardView));
     }
 
     @Override
     public void onPreventCornerOverlapChanged(CardViewDelegate cardView) {
-        if (useLower) {
-            super.onPreventCornerOverlapChanged(cardView);
-        } else {
-            setMaxElevation(cardView, getMaxElevation(cardView));
-        }
+        setMaxElevation(cardView, getMaxElevation(cardView));
     }
 
     @Override
     public void setBackgroundColor(CardViewDelegate cardView, @Nullable ColorStateList color) {
-        if (useLower) {
-            super.setBackgroundColor(cardView, color);
-        } else {
-            getCardBackground(cardView).setColor(color);
-        }
+        getCardBackground(cardView).setColor(color);
     }
 
     @Override
     public ColorStateList getBackgroundColor(CardViewDelegate cardView) {
-        if (useLower) {
-            return super.getBackgroundColor(cardView);
-        } else {
-            return getCardBackground(cardView).getColor();
-        }
+        return getCardBackground(cardView).getColor();
     }
 
     private RoundRectDrawable getCardBackground(CardViewDelegate cardView) {
