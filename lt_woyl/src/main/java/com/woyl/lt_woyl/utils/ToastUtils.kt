@@ -30,20 +30,13 @@ object ToastUtils {
     @SuppressLint("ShowToast")
     fun showShortToast(context: Context, message: CharSequence?) {
         if (isShow) {
-            try {
-                if (toast == null) {
-                    toast = Toast.makeText(context, message, Toast.LENGTH_SHORT)
-                } else {
-                    toast?.setText(message)
-                }
-                toast?.show()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                //解决在子线程中调用Toast的异常情况处理
-                Looper.prepare()
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-                Looper.loop()
+            if (toast == null) {
+                toast = Toast.makeText(context, message, Toast.LENGTH_SHORT)
+            } else {
+                //如果当前Toast没有消失， 直接显示内容，不需要重新设置
+                toast?.setText(message)
             }
+            toast?.show()
         }
     }
 
@@ -56,20 +49,12 @@ object ToastUtils {
     @SuppressLint("ShowToast")
     fun showShortToast(context: Context, resId: Int?) {
         if (isShow) {
-            try {
-                if (toast == null) {
-                    toast = Toast.makeText(context, resId!!, Toast.LENGTH_SHORT)
-                } else {
-                    toast?.setText(resId!!)
-                }
-                toast?.show()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                //解决在子线程中调用Toast的异常情况处理
-                Looper.prepare()
-                Toast.makeText(context, resId!!, Toast.LENGTH_SHORT).show()
-                Looper.loop()
+            if (toast == null) {
+                toast = Toast.makeText(context, resId!!, Toast.LENGTH_SHORT)
+            } else {
+                toast?.setText(resId!!)
             }
+            toast?.show()
         }
     }
 
@@ -77,20 +62,12 @@ object ToastUtils {
     @SuppressLint("ShowToast")
     fun showLongToast(context: Context, message: String?) {
         if (isShow) {
-            try {
-                if (toast == null) {
-                    toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
-                } else {
-                    toast?.setText(message)
-                }
-                toast?.show()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                //解决在子线程中调用Toast的异常情况处理
-                Looper.prepare()
-                Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-                Looper.loop()
+            if (toast == null) {
+                toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
+            } else {
+                toast?.setText(message)
             }
+            toast?.show()
         }
     }
 
@@ -102,20 +79,12 @@ object ToastUtils {
     @SuppressLint("ShowToast")
     fun showLongToast(context: Context, resId: Int?) {
         if (isShow) {
-            try {
-                if (toast == null) {
-                    toast = Toast.makeText(context, resId!!, Toast.LENGTH_LONG)
-                } else {
-                    toast?.setText(resId!!)
-                }
-                toast?.show()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                //解决在子线程中调用Toast的异常情况处理
-                Looper.prepare()
-                Toast.makeText(context, resId!!, Toast.LENGTH_LONG).show()
-                Looper.loop()
+            if (toast == null) {
+                toast = Toast.makeText(context, resId!!, Toast.LENGTH_LONG)
+            } else {
+                toast?.setText(resId!!)
             }
+            toast?.show()
         }
     }
 
@@ -128,20 +97,12 @@ object ToastUtils {
     @SuppressLint("ShowToast")
     fun showTimeToast(context: Context, resId: Int?, duration: Int) {
         if (isShow) {
-            try {
-                if (toast == null) {
-                    toast = Toast.makeText(context, resId!!, duration)
-                } else {
-                    toast?.setText(resId!!)
-                }
-                toast?.show()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                //解决在子线程中调用Toast的异常情况处理
-                Looper.prepare()
-                Toast.makeText(context, resId!!, duration).show()
-                Looper.loop()
+            if (toast == null) {
+                toast = Toast.makeText(context, resId!!, duration)
+            } else {
+                toast?.setText(resId!!)
             }
+            toast?.show()
         }
     }
 
@@ -154,20 +115,12 @@ object ToastUtils {
     @SuppressLint("ShowToast")
     fun showTimeToast(context: Context, message: CharSequence?, duration: Int) {
         if (isShow) {
-            try {
-                if (toast == null) {
-                    toast = Toast.makeText(context, message!!, duration)
-                } else {
-                    toast?.setText(message!!)
-                }
-                toast?.show()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                //解决在子线程中调用Toast的异常情况处理
-                Looper.prepare()
-                Toast.makeText(context, message!!, duration).show()
-                Looper.loop()
+            if (toast == null) {
+                toast = Toast.makeText(context, message!!, duration)
+            } else {
+                toast?.setText(message!!)
             }
+            toast?.show()
         }
     }
 
@@ -181,23 +134,15 @@ object ToastUtils {
     @SuppressLint("ShowToast")
     fun showToastView(context: Context, message: CharSequence?, duration: Int, view: View?) {
         if (isShow) {
-            try {
-                if (toast == null) {
-                    toast = Toast.makeText(context, message!!, duration)
-                } else {
-                    toast?.setText(message!!)
-                }
-                if (view != null) {
-                    toast?.view = view
-                }
-                toast?.show()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                //解决在子线程中调用Toast的异常情况处理
-                Looper.prepare()
-                Toast.makeText(context, message!!, duration).show()
-                Looper.loop()
+            if (toast == null) {
+                toast = Toast.makeText(context, message!!, duration)
+            } else {
+                toast?.setText(message!!)
             }
+            if (view != null) {
+                toast?.view = view
+            }
+            toast?.show()
         }
     }
 
@@ -206,7 +151,7 @@ object ToastUtils {
      *@param context
      * @param message
      * @param duration
-     * @param view
+     * @param
      *
      * */
     @SuppressLint("ShowToast")
@@ -214,27 +159,18 @@ object ToastUtils {
         context: Context,
         message: CharSequence?,
         duration: Int,
-        view: View?,
         gravity: Int?,
         xOffset: Int?,
         yOffset: Int?
     ) {
         if (isShow) {
-            try {
-                if (toast == null) {
-                    toast = Toast.makeText(context, message!!, duration)
-                } else {
-                    toast?.setText(message!!)
-                }
-                toast?.setGravity(gravity!!, xOffset!!, yOffset!!)
-                toast?.show()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                //解决在子线程中调用Toast的异常情况处理
-                Looper.prepare()
-                Toast.makeText(context, message!!, duration).show()
-                Looper.loop()
+            if (toast == null) {
+                toast = Toast.makeText(context, message!!, duration)
+            } else {
+                toast?.setText(message!!)
             }
+            toast?.setGravity(gravity!!, xOffset!!, yOffset!!)
+            toast?.show()
         }
     }
 
@@ -258,26 +194,18 @@ object ToastUtils {
         xOffset: Int,
         yOffset: Int
     ) {
-        try {
-            if (isShow) {
-                if (toast == null) {
-                    toast = Toast.makeText(context, message, duration)
-                } else {
-                    toast?.setText(message)
-                }
-                toast?.setGravity(gravity, xOffset, yOffset)
-                val toastView = toast?.view as LinearLayout
-                val imageView = ImageView(context)
-                imageView.setImageResource(iconResId)
-                toastView.addView(imageView, 0)
-                toast?.show()
+        if (isShow) {
+            if (toast == null) {
+                toast = Toast.makeText(context, message, duration)
+            } else {
+                toast?.setText(message)
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            //解决在子线程中调用Toast的异常情况处理
-            Looper.prepare()
-            Toast.makeText(context, message, duration).show()
-            Looper.loop()
+            toast?.setGravity(gravity, xOffset, yOffset)
+            val toastView = toast?.view as LinearLayout
+            val imageView = ImageView(context)
+            imageView.setImageResource(iconResId)
+            toastView.addView(imageView, 0)
+            toast?.show()
         }
     }
 
@@ -309,30 +237,22 @@ object ToastUtils {
         horizontalMargin: Float,
         verticalMargin: Float
     ) {
-        try {
-            if (isShow) {
-                if (toast == null) {
-                    toast = Toast.makeText(context, message, duration)
-                } else {
-                    toast?.setText(message)
-                }
-                if (view != null) {
-                    toast?.view = view
-                }
-                if (isMargin) {
-                    toast?.setMargin(horizontalMargin, verticalMargin)
-                }
-                if (isGravity) {
-                    toast?.setGravity(gravity, xOffset, yOffset)
-                }
-                toast?.show()
+        if (isShow) {
+            if (toast == null) {
+                toast = Toast.makeText(context, message, duration)
+            } else {
+                toast?.setText(message)
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            //解决在子线程中调用Toast的异常情况处理
-            Looper.prepare()
-            Toast.makeText(context, message, duration).show()
-            Looper.loop()
+            if (view != null) {
+                toast?.view = view
+            }
+            if (isMargin) {
+                toast?.setMargin(horizontalMargin, verticalMargin)
+            }
+            if (isGravity) {
+                toast?.setGravity(gravity, xOffset, yOffset)
+            }
+            toast?.show()
         }
     }
 
@@ -364,30 +284,22 @@ object ToastUtils {
         horizontalMargin: Float,
         verticalMargin: Float
     ) {
-        try {
-            if (isShow) {
-                if (toast == null) {
-                    toast = Toast.makeText(context, resId, duration)
-                } else {
-                    toast?.setText(resId)
-                }
-                if (view != null) {
-                    toast?.view = view
-                }
-                if (isMargin) {
-                    toast?.setMargin(horizontalMargin, verticalMargin)
-                }
-                if (isGravity) {
-                    toast?.setGravity(gravity, xOffset, yOffset)
-                }
-                toast?.show()
+        if (isShow) {
+            if (toast == null) {
+                toast = Toast.makeText(context, resId, duration)
+            } else {
+                toast?.setText(resId)
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            //解决在子线程中调用Toast的异常情况处理
-            Looper.prepare()
-            Toast.makeText(context, resId, duration).show()
-            Looper.loop()
+            if (view != null) {
+                toast?.view = view
+            }
+            if (isMargin) {
+                toast?.setMargin(horizontalMargin, verticalMargin)
+            }
+            if (isGravity) {
+                toast?.setGravity(gravity, xOffset, yOffset)
+            }
+            toast?.show()
         }
     }
 }
