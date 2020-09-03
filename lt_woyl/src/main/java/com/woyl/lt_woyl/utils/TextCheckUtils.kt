@@ -5,7 +5,7 @@ import android.text.TextUtils
 
 object TextCheckUtils {
 
-    const val REGEX_MOBILE_SIMPLE = "^[1]\\d{10}$"
+    private const val REGEX_MOBILE_SIMPLE = "^[1]\\d{10}$"
 
     fun isPhoneNum(s: String): Boolean {
         return s.matches(Regex(REGEX_MOBILE_SIMPLE))
