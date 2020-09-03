@@ -214,4 +214,59 @@ object DateUtils {
         //处于开始时间之后，和结束时间之前的判断
         return date.after(start) && date.after(end)
     }
+
+    private const val minute = 60 * 1000 // 1分钟
+        .toLong()
+    private const val hour = 60 * minute // 1小时
+
+    private const val day = 24 * hour // 1天
+
+    private const val month = 31 * day // 月
+
+    private const val year = 12 * month // 年
+
+
+    /**
+     * 返回文字描述的日期
+     *
+     * @param
+     * @return
+     */
+    @SuppressLint("SimpleDateFormat")
+    @Throws(ParseException::class)
+    fun getTimeFormatText(time: String?): String? {
+        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val date: Date = format.parse(time) ?: return null
+        val diff = Date().time - date.time
+        var r: Long = 0
+        if (diff > year) {
+            r = diff / year
+            return r.toString() + "年前"
+        }
+        if (diff > month) {
+            r = diff / month
+            return r.toString() + "个月前"
+        }
+        if (diff > day) {
+            r = diff / day
+            return r.toString() + "天前"
+        }
+        if (diff > hour) {
+            r = diff / hour
+            return r.toString() + "个小时前"
+        }
+        if (diff > minute) {
+            r = diff / minute
+            return r.toString() + "分钟前"
+        }
+        return "刚刚"
+    }
+
+    fun stringForTime(timeMs: Long): String? {
+        val totalSeconds = timeMs / 1000
+        val seconds = totalSeconds % 60
+        val minutes = totalSeconds / 60 % 60
+        val hours = totalSeconds / 3600
+        return Formatter().format("%02d:%02d:%02d", hours, minutes, seconds).toString()
+    }
 }
