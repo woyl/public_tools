@@ -427,4 +427,12 @@
         <item name="android:windowEnterAnimation">@anim/push_up_in</item>
     </style>
 
+    <style name="popmenu_animation" parent="android:Animation">
+
+    </style>
+
+    <style name="dialogStyle" parent="android:style/Theme.Holo.Light.Dialog">
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
 </resources>
