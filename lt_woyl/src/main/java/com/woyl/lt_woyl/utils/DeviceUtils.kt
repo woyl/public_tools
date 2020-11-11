@@ -2,8 +2,10 @@ package com.woyl.lt_woyl.utils
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.os.Build
 import android.text.TextUtils
+import android.util.Log
 
 object DeviceUtils {
 
@@ -123,5 +125,38 @@ object DeviceUtils {
         } catch (e: Exception) {
             false
         }
+    }
+
+    /**
+     * 获取手机型号
+     *
+     * @return  手机型号
+     */
+    fun getSystemModel(): String? {
+        return Build.MODEL
+    }
+
+    /**
+     * 获取华为刘海的高
+     * 比如华为p40挖孔屏的状态栏高度在挖孔上面只有一点26 的高度，并没有计算挖孔的高度，实际结果为108，这个要专门针对华为挖孔屏计算在内
+     * @param context
+     * @return
+     */
+    fun getNotchSizeAtHuawei(context: Context): Int {
+        var ret = intArrayOf(0, 0)
+        try {
+            val cl = context.classLoader
+            val HwNotchSizeUtil =
+                cl.loadClass("com.huawei.android.util.HwNotchSizeUtil")
+            val get = HwNotchSizeUtil.getMethod("getNotchSize")
+            ret = get.invoke(HwNotchSizeUtil) as IntArray
+        } catch (e: ClassNotFoundException) {
+            Log.e("NotchScreenUtil", "getNotchSize ClassNotFoundException")
+        } catch (e: NoSuchMethodException) {
+            Log.e("NotchScreenUtil", "getNotchSize NoSuchMethodException")
+        } catch (e: java.lang.Exception) {
+            Log.e("NotchScreenUtil", "getNotchSize Exception")
+        }
+        return ret[1]
     }
 }
