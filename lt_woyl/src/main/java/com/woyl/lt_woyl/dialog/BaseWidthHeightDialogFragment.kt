@@ -22,7 +22,8 @@ abstract class BaseWidthHeightDialogFragment :DialogFragment {
     var views :View ?= null
     var inflater: LayoutInflater?=null
 
-    constructor(withLeft: Int, withRight: Int, heightTop: Int, heigthButtom: Int) : super() {
+    constructor(orientation:Int,withLeft: Int, withRight: Int, heightTop: Int, heigthButtom: Int) : super() {
+        this.orientation = orientation
         this.withLeft = withLeft
         this.withRight = withRight
         this.heightTop = heightTop
