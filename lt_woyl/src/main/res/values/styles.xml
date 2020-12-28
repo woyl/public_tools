@@ -46,7 +46,7 @@
         <item name="android:paddingTop">26dp</item>
         <item name="android:paddingBottom">18dp</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:fadingEdge">@null</item>
+<!--        <item name="android:fadingEdge">@null</item>-->
     </style>
 
     <style name="MMScroll">
@@ -435,4 +435,11 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <style name="Base.CardView" parent="android:Widget">
+        <item name="cardCornerRadius">@dimen/cardview_default_radius</item>
+        <item name="cardElevation">@dimen/cardview_default_elevation</item>
+        <item name="cardMaxElevation">@dimen/cardview_default_elevation</item>
+        <item name="cardUseCompatPadding">false</item>
+        <item name="cardPreventCornerOverlap">true</item>
+    </style>
 </resources>
