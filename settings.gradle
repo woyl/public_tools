@@ -1,3 +1,2 @@
-include ':third-part-color-cardview'
 include ':app', ':lt_woyl'
 rootProject.name='My_'
