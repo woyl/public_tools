@@ -64,6 +64,10 @@ abstract class BaseDialogFragment : DialogFragment {
         return activity
     }
 
+    fun isShowing() :Boolean{
+        return dialog != null && dialog?.isShowing == true
+    }
+
     override fun onStart() {
         super.onStart()
         val displayMetrics = DisplayMetrics()
