@@ -1,75 +1,78 @@
-package com.woyl.lt_woyl.dialog;
+package com.woyl.lt_woyl.dialog
 
-import android.content.Context;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.content.Context
+import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import androidx.fragment.app.DialogFragment
+import com.woyl.lt_woyl.R
+import java.util.*
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
+abstract class BaseDialogFragment : DialogFragment {
+    private var isWidth: Boolean
+    private var ori: Int
+    private var isTranslucent = false
+    protected var views: View? = null
+    protected var inflater: LayoutInflater? = null
 
-import com.woyl.lt_woyl.R;
-
-import java.util.Objects;
-
-public abstract class BaseDialogFragment extends DialogFragment {
-    private boolean isWidth ;
-    private int ori ;
-    protected View view;
-    protected LayoutInflater inflater;
-
-
-    public BaseDialogFragment(boolean isWidth, int ori) {
-        this.isWidth = isWidth;
-        this.ori = ori;
+    constructor(isWidth: Boolean, ori: Int) {
+        this.isWidth = isWidth
+        this.ori = ori
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(this.getDialog()).requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.inflater = inflater;
-        initViews();
-        return view;
+    constructor(isWidth: Boolean, ori: Int, isTranslucent: Boolean) {
+        this.isWidth = isWidth
+        this.ori = ori
+        this.isTranslucent = isTranslucent
     }
 
-    @Override
-    public void onResume() {
-        Window window = Objects.requireNonNull(getDialog()).getWindow();
-        if (window != null) {
-            window.setGravity(ori);
-            ViewGroup.LayoutParams layoutParams= window.getAttributes();
-            if (isWidth){
-                DisplayMetrics dm = getResources().getDisplayMetrics();
-                int width = dm.widthPixels;
-                layoutParams.width = (int) (width*0.8);
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        Objects.requireNonNull(this.dialog)?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        this.inflater = inflater
+        initViews()
+        return view
+    }
+
+    override fun onResume() {
+        val window = dialog?.window
+        window?.let {
+            it.setGravity(ori)
+            val layoutParams: ViewGroup.LayoutParams = it.attributes
+            if (isWidth) {
+                val dm = resources.displayMetrics
+                val width = dm.widthPixels
+                layoutParams.width = (width * 0.8).toInt()
             }
-            window.setWindowAnimations(R.style.popmenu_animation);
-            setStyle(DialogFragment.STYLE_NORMAL, R.style.dialogStyle);
+            it.setWindowAnimations(R.style.popmenu_animation)
+            if (isTranslucent) {
+                setStyle(STYLE_NORMAL, R.style.dialogStyleTranslucent)
+            } else {
+                setStyle(STYLE_NORMAL, R.style.dialogStyle)
+            }
         }
-        super.onResume();
+        super.onResume()
     }
 
-    @Nullable
-    @Override
-    public Context getContext() {
-        return getActivity();
+    override fun getContext(): Context? {
+        return activity
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        Objects.requireNonNull(
-                Objects.requireNonNull(getDialog()).getWindow()).setLayout(displayMetrics.widthPixels,
-                Objects.requireNonNull(getDialog().getWindow()).getAttributes().height);
-        getDialog().getWindow().setBackgroundDrawableResource(R.color.transparent);
+    override fun onStart() {
+        super.onStart()
+        val displayMetrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+        dialog?.window?.attributes?.height?.let {
+            dialog?.window?.setLayout(displayMetrics.widthPixels, it)
+        }
+        dialog?.window?.setBackgroundDrawableResource(R.color.transparent)
     }
 
-    protected abstract void initViews();
+    protected abstract fun initViews()
 }

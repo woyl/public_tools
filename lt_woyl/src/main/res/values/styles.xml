@@ -435,6 +435,11 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <style name="dialogStyleTranslucent" parent="android:style/Theme.Holo.Light.Dialog">
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
     <style name="Base.CardView" parent="android:Widget">
         <item name="cardCornerRadius">@dimen/cardview_default_radius</item>
         <item name="cardElevation">@dimen/cardview_default_elevation</item>
