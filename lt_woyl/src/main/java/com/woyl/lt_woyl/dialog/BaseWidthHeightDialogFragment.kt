@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import com.woyl.lt_woyl.R
 import java.util.*
 
@@ -54,6 +55,13 @@ abstract class BaseWidthHeightDialogFragment :DialogFragment {
         window?.setWindowAnimations(R.style.popmenu_animation)
         setStyle(STYLE_NORMAL, R.style.dialogStyle)
         super.onResume()
+    }
+
+    override fun show(manager: FragmentManager, tag: String?) {
+        if (isAdded) {
+            manager.beginTransaction().remove(this).commit()
+        }
+        super.show(manager, tag)
     }
 
     override fun getContext(): Context? {
