@@ -42,22 +42,7 @@ abstract class BaseDialogFragment : DialogFragment {
     }
 
     override fun onResume() {
-        val window = dialog?.window
-        window?.let {
-            it.setGravity(ori)
-            val layoutParams: ViewGroup.LayoutParams = it.attributes
-            if (isWidth) {
-                val dm = resources.displayMetrics
-                val width = dm.widthPixels
-                layoutParams.width = (width * 0.8).toInt()
-            }
-            it.setWindowAnimations(R.style.popmenu_animation)
-            if (isTranslucent) {
-                setStyle(STYLE_NORMAL, R.style.dialogStyleTranslucent)
-            } else {
-                setStyle(STYLE_NORMAL, R.style.dialogStyle)
-            }
-        }
+
         super.onResume()
     }
 
@@ -78,6 +63,25 @@ abstract class BaseDialogFragment : DialogFragment {
 
     override fun onStart() {
         super.onStart()
+
+
+        val window = dialog?.window
+        window?.let {
+            it.setGravity(ori)
+            val layoutParams: ViewGroup.LayoutParams = it.attributes
+            if (isWidth) {
+                val dm = resources.displayMetrics
+                val width = dm.widthPixels
+                layoutParams.width = (width * 0.8).toInt()
+            }
+            it.setWindowAnimations(R.style.popmenu_animation)
+            if (isTranslucent) {
+                setStyle(STYLE_NORMAL, R.style.dialogStyleTranslucent)
+            } else {
+                setStyle(STYLE_NORMAL, R.style.dialogStyle)
+            }
+        }
+
         val displayMetrics = DisplayMetrics()
         activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
         dialog?.window?.attributes?.height?.let {

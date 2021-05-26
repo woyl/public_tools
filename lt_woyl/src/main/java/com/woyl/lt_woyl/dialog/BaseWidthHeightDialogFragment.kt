@@ -44,16 +44,7 @@ abstract class BaseWidthHeightDialogFragment :DialogFragment {
     }
 
     override fun onResume() {
-        val window = dialog?.window
-        window?.setGravity(orientation)
-        val dm = resources.displayMetrics
-        val layoutParms = window?.attributes
-        val with = dm.widthPixels
-        val height =  dm.heightPixels
-        layoutParms?.width = with - withLeft - withRight
-        layoutParms?.height = height - heightTop - heigthButtom
-        window?.setWindowAnimations(R.style.popmenu_animation)
-        setStyle(STYLE_NORMAL, R.style.dialogStyle)
+
         super.onResume()
     }
 
@@ -70,6 +61,18 @@ abstract class BaseWidthHeightDialogFragment :DialogFragment {
 
     override fun onStart() {
         super.onStart()
+
+        val window = dialog?.window
+        window?.setGravity(orientation)
+        val dm = resources.displayMetrics
+        val layoutParms = window?.attributes
+        val with = dm.widthPixels
+        val height =  dm.heightPixels
+        layoutParms?.width = with - withLeft - withRight
+        layoutParms?.height = height - heightTop - heigthButtom
+        window?.setWindowAnimations(R.style.popmenu_animation)
+        setStyle(STYLE_NORMAL, R.style.dialogStyle)
+
         val displayMetrics = DisplayMetrics()
         Objects.requireNonNull(activity)?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
         Objects.requireNonNull(dialog?.window)?.attributes?.height?.let {
