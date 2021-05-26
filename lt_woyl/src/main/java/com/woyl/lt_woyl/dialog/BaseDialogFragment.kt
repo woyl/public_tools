@@ -38,7 +38,7 @@ abstract class BaseDialogFragment : DialogFragment {
         Objects.requireNonNull(this.dialog)?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         this.inflater = inflater
         initViews()
-        return view
+        return views
     }
 
     override fun onResume() {
