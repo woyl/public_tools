@@ -12,6 +12,24 @@ import androidx.fragment.app.FragmentManager
 import com.woyl.lt_woyl.R
 import java.util.*
 
+/**
+ * 解决方案
+1. 该异常表示fragment已经被添加过，通常是因为重复添加fragment导致的，建议调用FragmentTransaction.add方法，先判断fragment.isAdded()。
+[解决方案]：以下是参考解决方案：
+if (fragment.isAdded()) {
+fragmentManager.beginTransaction().show(fragment).commit();
+} else {
+fragmentManager.beginTransaction().remove(fragment).commit();
+frament = new Fragment();
+fragmentManager.beginTransaction().add(R.id.layout_frame, fragment).commit();
+}
+
+2. 该异常还经常发生在使用DialogFragment的场景下，DialogFragment也是Fragment的一个子类，其show()方法等同于FragmentTransaction.add()方法，dismiss()方法等同于FragmentTransaction.remove()方法。所以发生异常的原因同上。解决方案如下：
+if (dialogFragment.isAdded())
+dialogFragment.dismiss();
+else
+dialogFragment.show();
+ * */
 abstract class BaseDialogFragment : DialogFragment {
     private var isWidth: Boolean
     private var ori: Int
@@ -58,9 +76,10 @@ abstract class BaseDialogFragment : DialogFragment {
 
     override fun show(manager: FragmentManager, tag: String?) {
         if (isAdded) {
-            manager.beginTransaction().remove(this).commit()
+            dismiss()
+        } else {
+            super.show(manager, tag)
         }
-        super.show(manager, tag)
     }
 
     override fun getContext(): Context? {

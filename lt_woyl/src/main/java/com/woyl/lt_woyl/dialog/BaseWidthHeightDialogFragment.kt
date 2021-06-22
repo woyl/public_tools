@@ -58,9 +58,10 @@ abstract class BaseWidthHeightDialogFragment :DialogFragment {
 
     override fun show(manager: FragmentManager, tag: String?) {
         if (isAdded) {
-            manager.beginTransaction().remove(this).commit()
+            dismiss()
+        } else {
+            super.show(manager, tag)
         }
-        super.show(manager, tag)
     }
 
     override fun getContext(): Context? {
