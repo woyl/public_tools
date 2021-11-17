@@ -75,10 +75,17 @@ abstract class BaseDialogFragment : DialogFragment {
     }
 
     override fun show(manager: FragmentManager, tag: String?) {
-        if (isAdded) {
-            dismiss()
-        } else {
+        try {
+            manager.apply {
+                beginTransaction().commitAllowingStateLoss()
+                executePendingTransactions()
+            }
+            if (isAdded) {
+                return
+            }
             super.show(manager, tag)
+        } catch (e:Exception) {
+            e.printStackTrace()
         }
     }
 
