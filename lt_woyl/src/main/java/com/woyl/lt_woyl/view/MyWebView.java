@@ -59,7 +59,7 @@ public class MyWebView extends WebView {
         wset.setAllowFileAccess(true);
         wset.setDomStorageEnabled(true);
         wset.setDatabaseEnabled(true);
-        wset.setAppCacheEnabled(true);
+//        wset.setAppCacheEnabled(true);
         wset.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
         wset.setUseWideViewPort(true);
         wset.setLoadWithOverviewMode(true);

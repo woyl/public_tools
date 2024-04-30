@@ -5,7 +5,7 @@ import java.lang.reflect.Method
 import java.lang.reflect.Proxy
 import java.util.*
 
-object Util {
+object UtilFastOnclick {
 
     fun <T> T.throttle(during: Long = 500L): T {
         return Proxy.newProxyInstance(this!!::class.java.classLoader, this!!::class.java.interfaces,

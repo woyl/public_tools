@@ -13,11 +13,7 @@ object ScreenUtils {
         val manager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val display = manager.defaultDisplay
         val p = Point()
-        if (Build.VERSION.SDK_INT > 17) {
-            display.getRealSize(p)
-        } else {
-            display.getSize(p)
-        }
+        display.getRealSize(p)
         return p.x
     }
 
@@ -25,33 +21,21 @@ object ScreenUtils {
         val manager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val display = manager.defaultDisplay
         val p = Point()
-        if (Build.VERSION.SDK_INT > 17) {
-            display.getRealSize(p)
-        } else {
-            display.getSize(p)
-        }
+        display.getRealSize(p)
         return p.y
     }
 
     fun getScreenWith (activity: Activity) :Int{
         val metrics = DisplayMetrics()
         val display = activity.windowManager.defaultDisplay
-        if (Build.VERSION.SDK_INT > 17) {
-            display.getRealMetrics(metrics)
-        } else {
-            display.getMetrics(metrics)
-        }
+        display.getRealMetrics(metrics)
         return metrics.widthPixels
     }
 
     fun getScreenHeight (activity: Activity) :Int{
         val metrics = DisplayMetrics()
         val display = activity.windowManager.defaultDisplay
-        if (Build.VERSION.SDK_INT > 17) {
-            display.getRealMetrics(metrics)
-        } else {
-            display.getMetrics(metrics)
-        }
+        display.getRealMetrics(metrics)
         return metrics.heightPixels
     }
 
