@@ -10,3 +10,6 @@ Kotlin 文档 https://book.kotlincn.net/text/home.html
 都说Retrofit好，好在哪里？只有动态代理么？ https://mp.weixin.qq.com/s/Yb5cuyoI7nPCUvQkolm27g
 Android 14新特性，选择性照片和视频访问授权 https://mp.weixin.qq.com/s/qpbHBhmfwZcgq5CLdRj2rQ
 大揭秘，Android Flow面试官最爱问的7个问题 https://mp.weixin.qq.com/s/1lFqwfDhedNAnMWz6Z9AzQ
+LiveData原理面试一问还不懂？ https://mp.weixin.qq.com/s/CmRlloTpjoG9l_X2kOiJbA
+Jetpack Bluetooth——更优雅地使用蓝牙 https://mp.weixin.qq.com/s/0lC8IkTfLBTmWgYXPiJPVA
+都说Retrofit好，好在哪里？只有动态代理么？ https://mp.weixin.qq.com/s/Yb5cuyoI7nPCUvQkolm27g
