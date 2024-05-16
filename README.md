@@ -1,16 +1,27 @@
 # public_tools
 publictools
 发布自己的项目到jitpack，以github代码仓库为例 https://blog.csdn.net/qq_32540053/article/details/130694117 https://www.jitpack.io/#woyl/public_tools
-Kotlin 文档 https://book.kotlincn.net/text/home.html
+Kotlin 文档 https://book.kotlincn.net/text/home.html https://book.kotlincn.net/text/home.html
 AndroidUtilCode https://github.com/Blankj/AndroidUtilCode
 
 android
 Android 14新特性，选择性照片和视频访问授权 https://mp.weixin.qq.com/s/qpbHBhmfwZcgq5CLdRj2rQ
 
+项目
+使用 Jetpack 核心组件 + MVI 架构，快速实现一个 App https://www.wanandroid.com/blog/show/3396
+基于Hilt+Retrofit+协程的MVVM模式探索 https://juejin.cn/post/6865596056567676942
+
 kotlin
 Kotlin专题「八」：属性与字段（Getter()与Setter()，后备字段field） https://blog.csdn.net/m0_37796683/article/details/107759662
 Kotlin - 作用域函数（apply、also、run、with、let） https://blog.csdn.net/HugMua/article/details/125137357
 Kotlin中标准库函数(apply、let、run、with、also、takeIf、takeUnless)的使用详解 https://blog.csdn.net/lu202032/article/details/128753817
+Kotlin DSL 实战：像 Compose 一样写代码  https://mp.weixin.qq.com/s?__biz=Mzg5MzYxNTI5Mg==&mid=2247490304&idx=1&sn=d80d178d18327edbfeddeab9da2ce319&chksm=c02d76d3f75affc511b11650a8d6bd11f29f6166c787d10fbacc04b25c77d4dd48d55b181fb4&scene=21#wechat_redirect
+kotlin 关键字
+kotlin reified关键字优化gson TypeToken解析函数 https://juejin.cn/post/7046970006222929934
+2019-08-18 kotlin泛型相关 -> reified https://www.jianshu.com/p/a3f082633859
+[译]Kotlin的独门秘籍Reified实化类型参数(上篇) https://zhuanlan.zhihu.com/p/47683246
+Kotlin 内联函数和 Reified 类型参数的原理与运用 https://blog.csdn.net/Android23333/article/details/134571612
+Kotlin中reified理解和实战应用 https://blog.csdn.net/m0_59162559/article/details/133150287
 
 ConstraintLayout
 ConstraintLayout（约束布局）使用详解 https://blog.csdn.net/ZhaiKun68/article/details/133446300 https://blog.csdn.net/edmond999/article/details/108382776
@@ -29,6 +40,8 @@ jetpack
 LiveData原理面试一问还不懂？ https://mp.weixin.qq.com/s/CmRlloTpjoG9l_X2kOiJbA
 Jetpack Bluetooth——更优雅地使用蓝牙 https://mp.weixin.qq.com/s/0lC8IkTfLBTmWgYXPiJPVA
 Room和Flow最佳实践 https://mp.weixin.qq.com/s/QtFgc_SBw4go9sPrewvxiQ
+Android使用Hilt依赖项注入 - 二 https://juejin.cn/post/7236009756518301756
+大揭秘，Android Flow面试官最爱问的7个问题 https://mp.weixin.qq.com/s/1lFqwfDhedNAnMWz6Z9AzQ
 
 集合
 android数据结构全汇总 https://blog.csdn.net/star_nwe/article/details/131144305
@@ -48,6 +61,7 @@ Recyclerview滚动实现隐藏和显示悬浮按钮 https://www.jianshu.com/p/11
 RecyclerView还能这样滚动对齐? https://juejin.cn/post/7364740313284444186
 Android RecyclerView宫格拖拽效果实现 https://mp.weixin.qq.com/s/-88ASFL3cXADwcT-Nm6fWQ
 Recyclerview竟能如此丝滑，这14个优化策略不容错过... https://mp.weixin.qq.com/s/TDiGK5LFs-FWEnlW1h2p8g
+Viewpager2嵌套RecyclerView导致的滑动卡顿 https://blog.csdn.net/cotyyang/article/details/126130393
 
 语音
 Android 语言切换时发生了什么，源码是怎么调用的，对我们app有何影响，我们该怎么做去避免发生异常 https://blog.csdn.net/WangRain1/article/details/90511724
@@ -77,6 +91,15 @@ gradle
 
 网络
 更优雅的使用Gson解析Json https://mp.weixin.qq.com/s/Qm5Qska5rC06Caq-0Sw3Qg?poc_token=HNL3OWajY8sCnZybkeQZaV0z8UQBMs_NgL8H-eEX
+
+设备
+Android-史上最全、最完整，获取设备信息、获取手机唯一标识 https://www.wanandroid.com/blog/show/3535
+
+蓝牙
+Jetpack Bluetooth——更优雅地使用蓝牙 https://mp.weixin.qq.com/s/0lC8IkTfLBTmWgYXPiJPVA
+
+Dialog
+手把手教你优雅地实现 Dialog 弹窗 https://mp.weixin.qq.com/s/zmOt6UoaezuksBEeTl43VA
 
 协成
 Kotlin 协程中的并发问题：我明明用 mutex 上锁了，为什么没有用？ https://juejin.cn/post/7219522025198895159

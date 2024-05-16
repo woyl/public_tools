@@ -22,3 +22,6 @@ Flutter 像素编辑器#03 | 像素图层 https://juejin.cn/post/735827077798409
 布局
 [Flutter] infinity与可滚动布局 https://juejin.cn/post/7304867278566244404
 Flutter基建 - 布局组件全面解析 https://juejin.cn/post/7302688080808230949
+
+生命周期
+垃圾Flutter没有生命周期？ https://www.wanandroid.com/blog/show/3400?cid=539
