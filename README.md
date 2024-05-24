@@ -117,3 +117,7 @@ FloatingX https://gitcode.com/Petterpx/FloatingX/overview?utm_source=artical_git
 LayoutInflater.from参数Context传Activity、Application区别 https://blog.csdn.net/weixin_34400525/article/details/91394155
 Android筑基——深入理解 LayoutInflater.inflate() 方法 https://blog.csdn.net/willway_wang/article/details/107879127
 
+fitsSystemWindows属性
+再学一遍android:fitsSystemWindows属性 https://guolin.blog.csdn.net/article/details/123023395
+android:fitsSystemWindows https://www.jianshu.com/p/ab884d7fd57d
+android:fitsSystemWindows属性的用法 https://blog.csdn.net/liugec/article/details/71437274
