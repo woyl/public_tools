@@ -27,6 +27,7 @@ ConstraintLayout
 ConstraintLayout（约束布局）使用详解 https://blog.csdn.net/ZhaiKun68/article/details/133446300 https://blog.csdn.net/edmond999/article/details/108382776
 分享一种 ConstraintLayout 让TextView 自适应的同时，还不超出限制范围的方式 https://blog.csdn.net/weixin_39397471/article/details/128319082
 Android ConstraintLayout使TextView与ImageView在一行显示 https://blog.csdn.net/S1066430476/article/details/129728901
+使用ConstraintLayout将ImageView与TextView基线对齐 https://cloud.tencent.com/developer/ask/sof/177059 https://blog.csdn.net/weixin_32672471/article/details/117613686
 
 视频
 Android 14新特性，选择性照片和视频访问授权 https://mp.weixin.qq.com/s/qpbHBhmfwZcgq5CLdRj2rQ
@@ -57,11 +58,13 @@ TextView首行缩进 https://blog.csdn.net/student9128/article/details/73751044
 
 Recyclerview
 Android Recyclerview的item间距实现 https://www.cnblogs.com/stars-one/p/17845096.html
+RecyclerView 最后一项加边距 https://blog.csdn.net/lujianfeiccie2009/article/details/130866894
 Recyclerview滚动实现隐藏和显示悬浮按钮 https://www.jianshu.com/p/11e05c787669
 RecyclerView还能这样滚动对齐? https://juejin.cn/post/7364740313284444186
 Android RecyclerView宫格拖拽效果实现 https://mp.weixin.qq.com/s/-88ASFL3cXADwcT-Nm6fWQ
 Recyclerview竟能如此丝滑，这14个优化策略不容错过... https://mp.weixin.qq.com/s/TDiGK5LFs-FWEnlW1h2p8g
 Viewpager2嵌套RecyclerView导致的滑动卡顿 https://blog.csdn.net/cotyyang/article/details/126130393
+
 
 语音
 Android 语言切换时发生了什么，源码是怎么调用的，对我们app有何影响，我们该怎么做去避免发生异常 https://blog.csdn.net/WangRain1/article/details/90511724
@@ -107,5 +110,10 @@ Kotlin 协程中的并发问题：我明明用 mutex 上锁了，为什么没有
 Compose
 Android Jetpack Compose开发体验 https://mp.weixin.qq.com/s/Zoe1Zs2zwucpXL0YBji5hQ
 
+悬浮按钮
+FloatingX https://gitcode.com/Petterpx/FloatingX/overview?utm_source=artical_gitcode&isLogin=1 
 
+其他问题
+LayoutInflater.from参数Context传Activity、Application区别 https://blog.csdn.net/weixin_34400525/article/details/91394155
+Android筑基——深入理解 LayoutInflater.inflate() 方法 https://blog.csdn.net/willway_wang/article/details/107879127
 
