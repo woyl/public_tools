@@ -31,6 +31,7 @@ Android ConstraintLayout使TextView与ImageView在一行显示 https://blog.csdn
 
 视频
 Android 14新特性，选择性照片和视频访问授权 https://mp.weixin.qq.com/s/qpbHBhmfwZcgq5CLdRj2rQ
+surfaceView 圆角  外层包裹com.google.android.material.card.MaterialCardView 阴影设置为0 最大阴影为0p 把surfaceView改为TextureView
 
 Retrofit
 都说Retrofit好，好在哪里？只有动态代理么？ https://mp.weixin.qq.com/s/Yb5cuyoI7nPCUvQkolm27g
