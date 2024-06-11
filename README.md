@@ -44,6 +44,7 @@ Jetpack Bluetooth——更优雅地使用蓝牙 https://mp.weixin.qq.com/s/0lC8I
 Room和Flow最佳实践 https://mp.weixin.qq.com/s/QtFgc_SBw4go9sPrewvxiQ
 Android使用Hilt依赖项注入 - 二 https://juejin.cn/post/7236009756518301756
 大揭秘，Android Flow面试官最爱问的7个问题 https://mp.weixin.qq.com/s/1lFqwfDhedNAnMWz6Z9AzQ
+依赖注入框架之 「Hilt」 https://juejin.cn/post/7371997060633624630
 
 集合
 android数据结构全汇总 https://blog.csdn.net/star_nwe/article/details/131144305
