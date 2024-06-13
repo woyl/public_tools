@@ -81,6 +81,8 @@ Android 原生 TabLayout 使用全解析 https://blog.csdn.net/qq_39312146/artic
 Android优化UI篇 https://blog.csdn.net/u014602230/article/details/105954642
 拼多多冷启真的秒开 https://juejin.cn/post/7331607384932876326
 【万字总结】Android 内存优化知识盘点 https://juejin.cn/post/7359896145986289699
+深入研究Android启动速度优化（上）- 看完这些启动优化已经完成80%了 https://juejin.cn/post/7354233812593246248
+深入研究Android启动速度优化（下）- 不敢说100%秒开，但这样做“雀食”是快 https://juejin.cn/post/7359347999309807654
 
 线程
 Android 线程池周期性任务踩坑探究 https://mp.weixin.qq.com/s/P-eladS8U31l53NJleOMLw
