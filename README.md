@@ -88,6 +88,9 @@ Android优化UI篇 https://blog.csdn.net/u014602230/article/details/105954642
 Android 线程池周期性任务踩坑探究 https://mp.weixin.qq.com/s/P-eladS8U31l53NJleOMLw
 面试必问之 - ThreadLocal https://juejin.cn/post/7352245958593724454
 
+协程
+一文掌握Kotlin协程使用 https://mp.weixin.qq.com/s/lyaLrnFeLiWFk2NCgXZOgQ
+
 动画
 使用Android Behavior“协调”布局，实现酷炫交互 https://mp.weixin.qq.com/s/RsosJhbNwNxQec6ay_ctiw
 Android裸眼凸面镜效果实现 https://mp.weixin.qq.com/s/Q1Et-a5Y65DHiNAK1Jkd4w
@@ -125,3 +128,7 @@ fitsSystemWindows属性
 再学一遍android:fitsSystemWindows属性 https://guolin.blog.csdn.net/article/details/123023395
 android:fitsSystemWindows https://www.jianshu.com/p/ab884d7fd57d
 android:fitsSystemWindows属性的用法 https://blog.csdn.net/liugec/article/details/71437274
+
+viewpager2
+ViewPager2 正式版本发布，学不动也要学！ https://mp.weixin.qq.com/s/cFeeg6RqvJksaS4ll_HdPQ
+还在用 ViewPager？是时候替换成 ViewPager2 了！ https://mp.weixin.qq.com/s/9AqwB6lOOFZpHikFZk_2Pw
