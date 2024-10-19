@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.woyl.lt_woyl.R
 
 fun Activity.showConfirmDialog(
     title: String = getString(R.string.Note),

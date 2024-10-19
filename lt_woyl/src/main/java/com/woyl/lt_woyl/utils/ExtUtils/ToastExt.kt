@@ -12,13 +12,13 @@ import com.google.android.material.snackbar.Snackbar
  * Author: luyao
  * Date: 2022/7/28 11:23
  */
-fun toast(message: String) {
-    Toaster.show(message)
-}
-
-fun toast(@StringRes resId: Int) {
-    Toaster.show(resId)
-}
+//fun toast(message: String) {
+//    Toaster.show(message)
+//}
+//
+//fun toast(@StringRes resId: Int) {
+//    Toaster.show(resId)
+//}
 
 fun Context.snackBar(view: View, message: String) {
     Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
