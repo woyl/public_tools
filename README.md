@@ -66,6 +66,7 @@ RecyclerView还能这样滚动对齐? https://juejin.cn/post/7364740313284444186
 Android RecyclerView宫格拖拽效果实现 https://mp.weixin.qq.com/s/-88ASFL3cXADwcT-Nm6fWQ
 Recyclerview竟能如此丝滑，这14个优化策略不容错过... https://mp.weixin.qq.com/s/TDiGK5LFs-FWEnlW1h2p8g
 Viewpager2嵌套RecyclerView导致的滑动卡顿 https://blog.csdn.net/cotyyang/article/details/126130393
+Android RecyerView让指定Item滑动到任意位置 https://blog.csdn.net/u011020636/article/details/110749233
 
 
 语音
@@ -132,3 +133,6 @@ android:fitsSystemWindows属性的用法 https://blog.csdn.net/liugec/article/de
 viewpager2
 ViewPager2 正式版本发布，学不动也要学！ https://mp.weixin.qq.com/s/cFeeg6RqvJksaS4ll_HdPQ
 还在用 ViewPager？是时候替换成 ViewPager2 了！ https://mp.weixin.qq.com/s/9AqwB6lOOFZpHikFZk_2Pw
+
+webview
+外国程序员邮件问我安卓如何解决悬浮窗中WebView无法选中文本 https://juejin.cn/post/7424902468217946162
