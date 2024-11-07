@@ -4,6 +4,11 @@ publictools
 Kotlin 文档 https://book.kotlincn.net/text/home.html https://book.kotlincn.net/text/home.html
 AndroidUtilCode https://github.com/Blankj/AndroidUtilCode
 
+fidder
+Fiddler安卓设备抓包基础 https://blog.csdn.net/T1314_/article/details/141829526
+fiddler电脑手机抓包+汉化 https://blog.csdn.net/weixin_46589442/article/details/135599368
+https://www.telerik.com/download/fiddler
+
 android
 Android 14新特性，选择性照片和视频访问授权 https://mp.weixin.qq.com/s/qpbHBhmfwZcgq5CLdRj2rQ
 
