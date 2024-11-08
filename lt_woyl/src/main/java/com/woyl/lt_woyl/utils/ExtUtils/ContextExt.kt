@@ -16,7 +16,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import com.google.android.material.snackbar.Snackbar
-import luyao.ktx.util.YLog
+import com.woyl.lt_woyl.utils.YLog
 
 /**
  * Description:
@@ -34,12 +34,12 @@ val Context.isDebuggable: Boolean
 val Context.versionName: String
     get() = packageManager.getPackageInfo(packageName, 0).versionName
 
-val Context.versionCode: Long
-    get() = if (isBeforeP()) {
-        packageManager.getPackageInfo(packageName, 0).versionCode.toLong()
-    } else {
-        packageManager.getPackageInfo(packageName, 0).longVersionCode
-    }
+//val Context.versionCode: Long
+//    get() = if (isBeforeP()) {
+//        packageManager.getPackageInfo(packageName, 0).versionCode.toLong()
+//    } else {
+//        packageManager.getPackageInfo(packageName, 0).longVersionCode
+//    }
 
 fun Context.isAppInstalled(packageName: String): Boolean {
     if (packageName.isEmpty()) return false

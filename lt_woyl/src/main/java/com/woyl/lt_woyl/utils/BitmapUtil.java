@@ -406,6 +406,8 @@ public class BitmapUtil {
             } catch (RuntimeException ex) {
                 // Ignore failures while cleaning up.
                 ex.printStackTrace();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
 

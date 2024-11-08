@@ -75,6 +75,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.woyl.tool)
+//    implementation(libs.androidx.startup)
+    implementation ("androidx.startup:startup-runtime:1.1.1")
+    implementation ("com.squareup.okio:okio:3.0.0")
 
 //    implementation 'com.github.woyl:public_tools:1.1.0'
 }
