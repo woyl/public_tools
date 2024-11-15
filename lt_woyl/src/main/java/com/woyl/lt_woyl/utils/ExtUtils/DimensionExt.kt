@@ -38,3 +38,12 @@ fun Double.pxToSp(): Int = toFloat().pxToSp()
 
 fun Float.pxToSp(): Int =
     (this / Resources.getSystem().displayMetrics.scaledDensity + 0.5f).toInt()
+
+fun Int.dpToPx(): Int = toFloat().dpToPx()
+
+fun Long.dpToPx(): Int = toFloat().dpToPx()
+
+fun Double.dpToPx(): Int = toFloat().dpToPx()
+
+fun Float.dpToPx(): Int =
+    (this * Resources.getSystem().displayMetrics.density + 0.5f).toInt()

@@ -305,4 +305,23 @@ class MultiTouchDelegate(bound: Rect, delegateView: View) : TouchDelegate(bound,
         }
         return targetDelegate?.onTouchEvent(event) ?: false
     }
+
+    /**
+     * 扩展方法，扩大点击区域
+     * NOTE: 需要保证目标targetView有父View，否则无法扩大点击区域
+     *
+     * @param expandSize 扩大的大小，单位px
+     */
+    fun View.expandTouchView(expandSize: Int = 10.dpToPx()) {
+        val parentView = (parent as? View)
+        parentView?.post {
+            val rect = Rect()
+            getHitRect(rect) //getHitRect(rect)将视图在父容器中所占据的区域存储到rect中。
+            rect.left -= expandSize
+            rect.top -= expandSize
+            rect.right += expandSize
+            rect.bottom += expandSize
+            parentView.touchDelegate = TouchDelegate(rect, this)
+        }
+    }
 }
