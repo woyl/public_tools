@@ -79,7 +79,7 @@ abstract class BaseWidthHeightDialogFragment :DialogFragment {
         super.onStart()
 
         val displayMetrics = DisplayMetrics()
-        Objects.requireNonNull(activity)?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+        activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
         Objects.requireNonNull(dialog?.window)?.attributes?.height?.let {
             Objects.requireNonNull(
                 Objects.requireNonNull(dialog)?.window

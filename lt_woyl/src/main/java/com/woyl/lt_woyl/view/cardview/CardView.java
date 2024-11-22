@@ -16,6 +16,7 @@
 
 package com.woyl.lt_woyl.view.cardview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -162,13 +163,13 @@ public class CardView extends FrameLayout {
         super(context, attrs, defStyleAttr);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CardView, defStyleAttr,
-                R.style.CardView);
+                R.style.Base_CardView);
         ColorStateList backgroundColor;
         if (a.hasValue(R.styleable.CardView_cardBackgroundColor)) {
             backgroundColor = a.getColorStateList(R.styleable.CardView_cardBackgroundColor);
         } else {
             // There isn't one set, so we'll compute one based on the theme
-            final TypedArray aa = getContext().obtainStyledAttributes(COLOR_BACKGROUND_ATTR);
+            @SuppressLint("ResourceType") final TypedArray aa = getContext().obtainStyledAttributes(COLOR_BACKGROUND_ATTR);
             final int themeColorBackground = aa.getColor(0, 0);
             aa.recycle();
 
@@ -176,8 +177,8 @@ public class CardView extends FrameLayout {
             final float[] hsv = new float[3];
             Color.colorToHSV(themeColorBackground, hsv);
             backgroundColor = ColorStateList.valueOf(hsv[2] > 0.5f
-                    ? getResources().getColor(R.color.cardview_light_background)
-                    : getResources().getColor(R.color.cardview_dark_background));
+                    ? getResources().getColor(R.color.white)
+                    : getResources().getColor(R.color.black));
         }
         ColorStateList shadowColorStart = a.getColorStateList(R.styleable.CardView_cardShadowColorStart);
         ColorStateList shadowColorEnd = a.getColorStateList(R.styleable.CardView_cardShadowColorEnd);
