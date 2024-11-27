@@ -141,3 +141,6 @@ ViewPager2 正式版本发布，学不动也要学！ https://mp.weixin.qq.com/s
 
 webview
 外国程序员邮件问我安卓如何解决悬浮窗中WebView无法选中文本 https://juejin.cn/post/7424902468217946162
+
+状态栏
+Android “edge to edge”特性（一）官方“沉浸式”方案实探 https://juejin.cn/post/7395866692772085800
