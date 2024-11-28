@@ -3,3 +3,4 @@ UI显示又消失问题
 Dialogfragment弹窗问题
 2 在dialogfragment里面弹出软键盘 布局上移动 虚拟健高度 是设置了warp_content 问题需要设置屏幕高度方可解决问题
 3 自定义tablayout + viewpager2 滑动卡顿问题，是自定义layout 里面使用了约束布局
+4 -keepclasseswithmembers @kotlin.Metadata class * { *; } 混淆规则里加入这行 代码不会进行混淆
