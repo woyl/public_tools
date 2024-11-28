@@ -144,3 +144,6 @@ webview
 
 状态栏
 Android “edge to edge”特性（一）官方“沉浸式”方案实探 https://juejin.cn/post/7395866692772085800
+
+接口
+Kotlin 干掉接口需要强制实现的方法 https://juejin.cn/post/7414310200675074063
