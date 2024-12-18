@@ -104,3 +104,9 @@ fun Double.toNumberString(fractionDigits: Int = 2, minIntDigits: Int = 1, isGrou
         minimumFractionDigits = fractionDigits
         maximumFractionDigits = fractionDigits
     }.format(this)
+
+
+fun String.countUppercaseLetters(): Int {
+    val pattern = "\\p{Upper}".toRegex()
+    return pattern.findAll(this).count()
+}
