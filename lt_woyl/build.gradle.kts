@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.woyl.lt_woyl"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.media3.common)
     implementation(libs.androidx.startup.runtime)
+    implementation(libs.androidx.activity.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

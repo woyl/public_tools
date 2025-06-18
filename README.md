@@ -151,3 +151,8 @@ Kotlin 干掉接口需要强制实现的方法 https://juejin.cn/post/7414310200
 hook
 Android开发中常见的Hook技术有哪些？ https://blog.csdn.net/sdasdas12/article/details/135205703
 Android 无所不能的 hook，让应用不再 https://juejin.cn/post/7034178205728636941 https://github.com/eleme/lancet
+
+.9
+https://inloop.github.io/shadow4android/
+论如何在Android中还原设计稿中的阴影 https://juejin.cn/post/7270503053358874664
+Android阴影实现的几种方案 https://mp.weixin.qq.com/s/VEgfxTLBhYBJ1gLUDum5xA

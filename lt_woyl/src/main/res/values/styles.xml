@@ -447,4 +447,19 @@
         <item name="cardUseCompatPadding">false</item>
         <item name="cardPreventCornerOverlap">true</item>
     </style>
+
+
+    <style name="BaseDialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@style/BaseDialogAnimation</item>
+    </style>
+
+    <style name="BaseDialogAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
 </resources>
