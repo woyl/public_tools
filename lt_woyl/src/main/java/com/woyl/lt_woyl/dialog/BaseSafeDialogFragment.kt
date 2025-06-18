@@ -14,11 +14,24 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.woyl.lt_woyl.R
 
 /**
  * 安全的 DialogFragment 基类，处理了 show() 和 dismiss() 的安全调用问题
+ * 在 Kotlin 的基类 DialogFragment 中重写 show() 方法时，需要确保在 Activity 有效生命周期内执行显示 / 隐藏操作。以下是针对 Activity 创建前 和 Activity 销毁后 调用 show()/dismiss() 的解决方案：
+ * 1. 问题分析
+ * Activity 生命周期风险：
+ * 创建前：Activity 尚未完成初始化（如 onCreate() 未执行），此时调用 show() 可能导致 IllegalStateException。
+ * 销毁后：Activity 已进入 onDestroy() 状态，此时调用 show()/dismiss() 会引发崩溃。
+ * 关键生命周期状态：
+ * Activity 有效区间：从 onStart() 到 onStop() 之间。
+ * 安全判断条件：isAdded && activity?.isFinishing == false && activity?.isDestroyed == false。
+ *
  */
 abstract class BaseSafeDialogFragment : DialogFragment() {
 
@@ -37,6 +50,11 @@ abstract class BaseSafeDialogFragment : DialogFragment() {
     // 对话框动画资源ID
     @StyleRes
     protected open var dialogAnimation: Int = 0
+
+    private var pendingShowRequest = false
+    private var isDialogDismissed = false
+    var onShowListener: (() -> Unit)? = null
+    var onDismissListener: (() -> Unit)? = null
 
     // 布局资源ID
     @LayoutRes
@@ -151,37 +169,122 @@ abstract class BaseSafeDialogFragment : DialogFragment() {
         onDialogDestroy()
     }
 
+//    /**
+//     * 安全显示对话框的方法，检查 FragmentManager 和 Activity 状态
+//     */
+//    fun showSafely(manager: FragmentManager, tag: String? = null) {
+//        if (isAdded || isVisible || isRemoving || isDetached) return
+//
+//        val activity = activity ?: context as? AppCompatActivity
+//        if (activity != null && !activity.isFinishing && !activity.isDestroyed) {
+//            try {
+//                // 使用 commitNowAllowingStateLoss 避免状态丢失异常
+//                manager.beginTransaction().add(this, tag).commitNowAllowingStateLoss()
+//            } catch (e: IllegalStateException) {
+//                e.printStackTrace()
+//            }
+//        }
+//    }
+
+//    /**
+//     * 安全关闭对话框的方法，检查 Activity 和 Fragment 状态
+//     */
+//    fun dismissSafely() {
+//        val activity = activity ?: context as? AppCompatActivity
+//        if (activity != null && !activity.isFinishing && !activity.isDestroyed) {
+//            try {
+//                // 使用 dismissAllowingStateLoss 避免状态丢失异常
+//                dismissAllowingStateLoss()
+//            } catch (e: IllegalStateException) {
+//                e.printStackTrace()
+//            }
+//        }
+//    }
+
+
     /**
+     * 关键逻辑说明
+     * 安全判断：canShowDialog() 确保 Activity 处于有效状态。
+     * 延迟显示：若 Activity 未就绪，保存显示请求，在 onFragmentStarted() 回调中执行。
+     * 状态管理：通过 pendingShowRequest 和 isDialogDismissed 避免冲突操作。
      * 安全显示对话框的方法，检查 FragmentManager 和 Activity 状态
      */
-    fun showSafely(manager: FragmentManager, tag: String? = null) {
-        if (isAdded || isVisible || isRemoving || isDetached) return
-
-        val activity = activity ?: context as? AppCompatActivity
-        if (activity != null && !activity.isFinishing && !activity.isDestroyed) {
-            try {
-                // 使用 commitNowAllowingStateLoss 避免状态丢失异常
-                manager.beginTransaction().add(this, tag).commitNowAllowingStateLoss()
-            } catch (e: IllegalStateException) {
-                e.printStackTrace()
-            }
+    override fun show(manager: FragmentManager, tag: String?) {
+        if (canShowDialog()) {
+            super.show(manager, tag)
+            pendingShowRequest = false
+            isDialogDismissed = false
+            onShowListener?.invoke()
+        } else {
+            // 保存请求，在 Activity 就绪后执行
+            pendingShowRequest = true
+            manager.registerFragmentLifecycleCallbacks(lifecycleCallbacks, false)
         }
     }
 
     /**
      * 安全关闭对话框的方法，检查 Activity 和 Fragment 状态
      */
-    fun dismissSafely() {
-        val activity = activity ?: context as? AppCompatActivity
-        if (activity != null && !activity.isFinishing && !activity.isDestroyed) {
-            try {
-                // 使用 dismissAllowingStateLoss 避免状态丢失异常
-                dismissAllowingStateLoss()
-            } catch (e: IllegalStateException) {
-                e.printStackTrace()
+    override fun dismiss() {
+        if (canShowDialog()) {
+            super.dismiss()
+            isDialogDismissed = true
+            onDismissListener?.invoke()
+        } else {
+            // 标记为已取消，避免后续显示
+            isDialogDismissed = true
+        }
+    }
+
+
+    private val lifecycleCallbacks = object : FragmentManager.FragmentLifecycleCallbacks() {
+        override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
+            if (f === this@BaseSafeDialogFragment && pendingShowRequest && !isDialogDismissed) {
+                fm.beginTransaction().show(this@BaseSafeDialogFragment).commitAllowingStateLoss()
+                pendingShowRequest = false
+            }
+        }
+
+        override fun onFragmentStopped(fm: FragmentManager, f: Fragment) {
+            if (f === this@BaseSafeDialogFragment) {
+                fm.unregisterFragmentLifecycleCallbacks(this)
             }
         }
     }
+
+    private fun canShowDialog(): Boolean {
+        return isAdded &&
+                activity != null &&
+                !requireActivity().isFinishing &&
+                !requireActivity().isDestroyed
+    }
+
+//    进阶优化 使用协程管理生命周期
+
+//    override fun show(manager: FragmentManager, tag: String?) {
+//        if (canShowDialog2()) {
+//            super.show(manager, tag)
+//        } else {
+//            pendingShowRequest = true
+////            repeatOnLifecycle(Lifecycle.State.STARTED) {
+////                if (pendingShowRequest) {
+////                    super.show(manager, tag)
+////                    pendingShowRequest = false
+////                }
+////            }
+//            lifecycleScope.launchWhenStarted {
+//                if (pendingShowRequest) {
+//                    super.show(manager, tag)
+//                    pendingShowRequest = false
+//                }
+//            }
+//        }
+//    }
+//
+//    private fun canShowDialog2() =
+//        isAdded &&
+//                activity?.let { !it.isFinishing && !it.isDestroyed } == true
+
 
     /**
      * 设置对话框宽度（像素）

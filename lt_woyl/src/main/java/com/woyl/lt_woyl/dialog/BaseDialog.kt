@@ -18,6 +18,14 @@ import androidx.core.view.updatePadding
 
 /**
  * 对话框基类，提供常用的对话框功能和属性配置
+ * 在 Kotlin 的基类 DialogFragment 中重写 show() 方法时，需要确保在 Activity 有效生命周期内执行显示 / 隐藏操作。以下是针对 Activity 创建前 和 Activity 销毁后 调用 show()/dismiss() 的解决方案：
+ * 1. 问题分析
+ * Activity 生命周期风险：
+ * 创建前：Activity 尚未完成初始化（如 onCreate() 未执行），此时调用 show() 可能导致 IllegalStateException。
+ * 销毁后：Activity 已进入 onDestroy() 状态，此时调用 show()/dismiss() 会引发崩溃。
+ * 关键生命周期状态：
+ * Activity 有效区间：从 onStart() 到 onStop() 之间。
+ * 安全判断条件：isAdded && activity?.isFinishing == false && activity?.isDestroyed == false。
  */
 abstract class BaseDialog(
     context: Context,
@@ -129,20 +137,32 @@ abstract class BaseDialog(
     }
 
     override fun show() {
-        // 确保在Activity有效状态下显示对话框
-        val activity = context as? AppCompatActivity
-        if (activity != null && !activity.isFinishing && !activity.isDestroyed) {
+        // 确保在Activity有效状态下显示对话框 这里有问题 activity没有赋值 为null show方法时候才开始创建
+//        val activity = context as? AppCompatActivity
+//        if (activity != null && !activity.isFinishing && !activity.isDestroyed) {
+//            super.show()
+//            onDialogShow()
+//        }
+        try {
             super.show()
             onDialogShow()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
     override fun dismiss() {
         // 确保在Activity有效状态下关闭对话框
-        val activity = context as? AppCompatActivity
-        if (activity != null && !activity.isFinishing && !activity.isDestroyed) {
+//        val activity = context as? AppCompatActivity
+//        if (activity != null && !activity.isFinishing && !activity.isDestroyed) {
+//            super.dismiss()
+//            onDialogHide()
+//        }
+        try {
             super.dismiss()
             onDialogHide()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
