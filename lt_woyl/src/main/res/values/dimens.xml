@@ -13,4 +13,6 @@
     <dimen name="ConversationItemHeight">58dp</dimen>
     <dimen name="LargeAvatarSize">56dp</dimen>
 
+    <dimen name="cardview_compat_inset_shadow">16dp</dimen>
+
 </resources>

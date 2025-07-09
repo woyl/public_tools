@@ -1,6 +1,11 @@
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+//    kotlin("android") version "2.0.0" // 确保使用 Kotlin 2.0+
+
+    alias(libs.plugins.kotlinCompose)
 }
 
 android {
@@ -29,18 +34,16 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -62,24 +65,36 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+
+    implementation(libs.androidx.appcompat)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+
+
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.appcompat)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
-    androidTestImplementation(project(":lt_woyl"))
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.woyl.tool)
+
+
+//    implementation(libs.woyl.tool)
 //    implementation(libs.androidx.startup)
-    implementation ("androidx.startup:startup-runtime:1.1.1")
-    implementation ("com.squareup.okio:okio:3.0.0")
+    implementation (libs.androidx.startup.runtime)
+    implementation (libs.okio)
+
+    // Compose依赖
+//    implementation("androidx.compose.ui:ui:1.5.4")
+//    implementation("androidx.compose.material:material:1.5.4")
+//    implementation("androidx.compose.ui:ui-tooling-preview:1.5.3")
+//    debugImplementation("androidx.compose.ui:ui-tooling:1.5.3")
 
 //    implementation 'com.github.woyl:public_tools:1.1.0'
+    androidTestImplementation(project(":lt_woyl"))
+    implementation (project (":lt_woyl")) // 引用工具库模块
 }

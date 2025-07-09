@@ -31,7 +31,7 @@ val Context.language
 val Context.isDebuggable: Boolean
     get() = (applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
 
-val Context.versionName: String
+val Context.versionName: String?
     get() = packageManager.getPackageInfo(packageName, 0).versionName
 
 //val Context.versionCode: Long

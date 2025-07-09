@@ -13,4 +13,7 @@
     <color name="transparent">#00000000</color>
     <color name="navpage">#FFE1E8EB</color>
 
+    <color name="cardview_shadow_start_color">#9fd524</color>
+    <color name="cardview_shadow_end_color">#FFE1E8EB</color>
+
 </resources>

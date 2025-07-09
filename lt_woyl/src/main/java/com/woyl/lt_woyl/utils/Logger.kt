@@ -1,16 +1,13 @@
 package com.woyl.lt_woyl.utils
 
-import android.os.Build
 import android.util.Log
-import androidx.media3.common.BuildConfig
-import androidx.media3.common.util.Util
 
 object Logger {
 
     /**打印日志开关*/
-    private var IS_DEBUG = BuildConfig.DEBUG
+//    private var IS_DEBUG = BuildConfig.DEBUG
     /**内部判断是否打开*/
-    private var mIsInnerShowLog = IS_DEBUG
+    private var mIsInnerShowLog = true
 
     fun getFunctionName() : String {
         val sts = Thread.currentThread().stackTrace
